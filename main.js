@@ -30,7 +30,7 @@ document.querySelector("#btnAdd").addEventListener("click", () => {
 
     let agendaTelefono = new Numbers(objTelefonos);
 
-    agenda.addTeleP(agendaTelefono);
+    agenda.addTeleF(agendaTelefono);
     }
 
     form.classList.add("was-validated"); 

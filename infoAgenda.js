@@ -1,9 +1,9 @@
 export default class Numbers {
-    constructor(agendaTelefono) {
-    this._nameT = agendaTelefono.name.toUpperCase();
-    this._surName = agendaTelefono.surName.toUpperCase();
-    this._fechaBirth = new Date (agendaTelefono.fechaBirth);
-    this._telephone = agendaTelefono.telephone;
+    constructor(agendaTelefonos) {
+    this._name = agendaTelefonos.name.toUpperCase();
+    this._surName = agendaTelefonos.surName.toUpperCase();
+    this._fechaBirth = new Date (agendaTelefonos.fechaBirth);
+    this._telephone = agendaTelefonos.telephone;
     this._months = [
         "Ene",
         "Feb",
@@ -59,5 +59,13 @@ getFechaBirthAsString() {
     this._fechaBirth.getFullYear();
 
     return date;
+}
+getAge() {
+    let oneDay = 24 * 60 * 60 * 1000;
+    let oneYear = oneDay * 365;
+    let differenceMs = new Date() - this._fechaBirth;
+    let age = Math.trunc(differenceMs / oneYear);
+
+    return age;
 }
 }
