@@ -2,8 +2,10 @@ export default class Numbers {
     constructor(agendaTelefonos) {
     this._name = agendaTelefonos.name.toUpperCase();
     this._surName = agendaTelefonos.surName.toUpperCase();
+    this._apodo = agendaTelefonos.apodo.toUpperCase();
     this._fechaBirth = new Date (agendaTelefonos.fechaBirth);
     this._telephone = agendaTelefonos.telephone;
+    
     this._months = [
         "Ene",
         "Feb",
@@ -25,6 +27,9 @@ get name() {
 }
 get surName() {
     return this._surName;
+}
+get apodo() {
+    return this._apodo;
 }
 get fechaBirth() {
     return this._fechaBirth;

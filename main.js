@@ -14,6 +14,7 @@ document.querySelector("#btnAdd").addEventListener("click", () => {
     if (form.checkValidity() === true) {
     let name = document.querySelector("#name").value;
     let surName = document.querySelector("#surname").value;
+    let apodo = document.querySelector("#apodo").value;
     let cumple = document.querySelector("#cumpleAños").value;
     cumple = cumple.split("-");
 
@@ -24,13 +25,14 @@ document.querySelector("#btnAdd").addEventListener("click", () => {
     let objTelefonos = {
         name: name,
         surName : surName,
+        apodo : apodo,
         fechaBirth: fechaBirth,
         telephone: telephone,
     };
 
     let agendaTelefono = new Numbers(objTelefonos);
 
-    agenda.addTeleF(agendaTelefono);
+    agenda.agregarTeleF(agendaTelefono);
     }
 
     form.classList.add("was-validated"); 

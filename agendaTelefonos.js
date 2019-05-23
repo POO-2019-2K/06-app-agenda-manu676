@@ -1,4 +1,4 @@
-import Numbers from "infoAgenda.js";
+import Numbers from "./infoAgenda.js";
 
 export default class RegistroTele{
     constructor(tablaAgenda, tablaInfo){
@@ -10,7 +10,7 @@ export default class RegistroTele{
 
         //ARRAY de contactos 
         this._contactos = [];
-
+        //localStorage.removeItem("Contactos");
         this._iniciarTabla();
     }
     _iniciarTabla(){
@@ -32,6 +32,7 @@ export default class RegistroTele{
         }
         console.log(this._contactos);
         row.innerHTML= "";
+        location.reload();
         localStorage.setItem("Contactos", JSON.stringify(this._contactos));
     }
     _agregarBotonEliminar(row, agendaTelefonos){
@@ -43,41 +44,58 @@ export default class RegistroTele{
         this._eliminar(row,agendaTelefonos);
         })
         
-        row.cells[4].innerHTML = "";
-        row.cells[4].appendChild(btnEliminar);
+        row.cells[6].innerHTML = "";
+        row.cells[6].appendChild(btnEliminar);
     }
     _agregarAlaTabla(agendaTelefonos){
         let row = this._tablaAgenda.insertRow(-1);
         //tabla grande
         let cellNombre = row.insertCell(0);
         let cellApellido = row.insertCell(1);
-        let cellCumpleanos= row.insertCell(2);
-        let cellTelefono = row.insertCell(3);
-        row.insertCell(4);
+        let cellApodo = row.insertCell(2);
+        let cellCumpleanos= row.insertCell(3);
+        let cellTelefono = row.insertCell(4);
+        let cellEdad = row.insertCell(5);
+        row.insertCell(6);
 
-        cellName.innerHTML = agendaTelefonos.name;
+        cellNombre.innerHTML = agendaTelefonos.name;
         cellApellido.innerHTML = agendaTelefonos.surName;
+        cellApodo.innerHTML = agendaTelefonos.apodo;
         cellCumpleanos.innerHTML = agendaTelefonos.getFechaBirthAsString();
         cellTelefono.innerHTML = agendaTelefonos.telephone;
+        cellEdad.innerHTML = agendaTelefonos.getAge();
         
         this._agregarBotonEliminar(row,agendaTelefonos);
 
+        //tabla pequeña
         this._numContactos++;
-        this._edadProm += agendaTelefonos.getAge()
+        this._edadProm += agendaTelefonos.getAge(); // this._edadProm = this._edadProm + employee.getAge()
+
+        this._tablaInfo.rows[0].cells[1].innerHTML = this._numContactos;
+        this._tablaInfo.rows[1].cells[1].innerHTML = this._edadProm / this._numContactos;
+
+        let objTelefonos={
+            name : agendaTelefonos.name,
+            surName : agendaTelefonos.surName,
+            apodo : agendaTelefonos.apodo,
+            fechaBirth : agendaTelefonos.fechaBirth,
+            telephone : agendaTelefonos.telephone
+        };
+        this._contactos.push(objTelefonos);
     }    
-    _encontrarTelefono(telephone){
+    _encontrarTelefono(apodo){
         let encontrar = -1
         //cnts = contactos
         this._contactos.forEach((cnts,index) =>{
-            if(cnts.telephone === telephone){
+            if(cnts.apodo === apodo){
                 encontrar = index;
                 return;
             }
         });
         return encontrar;
     }
-    _agregarTeleF(agendaTelefonos){
-        let encontrar = this._encontrarTelefono(agendaTelefonos.telephone);
+    agregarTeleF(agendaTelefonos){
+        let encontrar = this._encontrarTelefono(agendaTelefonos.apodo);
         if (encontrar >=0){
             swal.fire({
             type: "error",
@@ -87,6 +105,6 @@ export default class RegistroTele{
             return;
         }
         this._agregarAlaTabla(agendaTelefonos);
-        localStorage.setItem("Contactos",JSON.parse(this._contactos));
+        localStorage.setItem("Contactos",JSON.stringify(this._contactos));
     }
 }
