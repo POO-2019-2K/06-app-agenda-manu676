@@ -33,5 +33,27 @@ export default class Agenda{
             return 0;
         }) 
     }
+    eliminarCnts(contacto){
+        for(let i = 0; i < this._contactos.length;i++){
+            if (contacto.apodo === this._contactos[i].apodo){
+                this._contactos.splice(i,1);
+        break}
+        }
+        console.log(this._contactos);
+        row.innerHTML= "";
+        location.reload();
+        localStorage.setItem("Contactos", JSON.stringify(this._contactos));
+    }
+    _encontrarTelefono(apodo){
+        let encontrar = -1
+        //cnts = contactos
+        this._contactos.forEach((cnts,index) =>{
+            if(cnts.apodo === apodo){
+                encontrar = index;
+                return;
+            }
+        });
+        return encontrar;
+    }
 
 }
