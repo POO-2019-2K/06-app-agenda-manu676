@@ -1,5 +1,5 @@
 import RegistroTele from "./agendaTelefonos.js";
-import Numbers from "./infoAgenda.js";
+import Contact from "./contacto.js";
 
 class Main {
 constructor() {
@@ -30,7 +30,7 @@ document.querySelector("#btnAdd").addEventListener("click", () => {
         telephone: telephone,
     };
 
-    let agendaTelefono = new Numbers(objTelefonos);
+    let agendaTelefono = new Contact(objTelefonos);
 
     agenda.agregarTeleF(agendaTelefono);
     }
@@ -57,7 +57,7 @@ document.querySelector("#acomodoEdad").addEventListener("click",()=>{
         telephone: telephone,
     };
 
-    let agendaTelefono = new Numbers(objTelefonos);
+    let agendaTelefono = new Contact(objTelefonos);
 
     agenda.acomEdad(agendaTelefono);
 
