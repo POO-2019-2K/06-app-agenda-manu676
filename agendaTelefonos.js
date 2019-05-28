@@ -3,7 +3,7 @@ import Numbers from "./infoAgenda.js";
 export default class RegistroTele{
     constructor(tablaAgenda, tablaInfo){
         this._tablaAgenda = tablaAgenda;
-        this._tablaInfo = tablaInfo;
+        this._tablaInfo = tablaInfo;    
 
         this._numContactos = 0;
         this._edadProm = 0;
@@ -24,9 +24,19 @@ export default class RegistroTele{
             this._agregarAlaTabla(new Numbers(cnts));
         })
     }
+    acomEdad(){
+        let contacto = [];
+        console.log(contacto);
+        this._contactos.forEach((cnts,index) => {
+            contacto.push(new Numbers(cnts))
+        })
+
+        contacto.sort(function (a, b){return a.getAge() > b.getAge() });
+        
+    }
     _eliminar(row,agendaTelefonos){
         for(let i = 0; i < this._contactos.length;i++){
-            if (agendaTelefonos.telephone === this._contactos[i].telephone){
+            if (agendaTelefonos.apodo === this._contactos[i].apodo){
                 this._contactos.splice(i,1);
         break}
         }
