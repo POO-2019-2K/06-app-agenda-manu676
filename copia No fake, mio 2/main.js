@@ -1,5 +1,5 @@
-import RegistroTele from "./agendaTelefonos.js";
-import Numbers from "./infoAgenda.js";
+import RegistroTele from "./registroTele.js";
+import Contacto from "./contacto.js";
 
 class Main {
 constructor() {
@@ -30,14 +30,16 @@ document.querySelector("#btnAdd").addEventListener("click", () => {
         telephone: telephone,
     };
 
-    let agendaTelefono = new Numbers(objTelefonos);
+    let contact = new Contacto(objTelefonos);
 
-    agenda.agregarTeleF(agendaTelefono);
+    agenda.agregarTeleF(contact);
     }
 
     form.classList.add("was-validated"); 
 });
 document.querySelector("#acomodoEdad").addEventListener("click",()=>{
+    objTelefonos.acomEdad();
+
 
     let name = document.querySelector("#name").value;
     let surName = document.querySelector("#surname").value;
@@ -57,34 +59,13 @@ document.querySelector("#acomodoEdad").addEventListener("click",()=>{
         telephone: telephone,
     };
 
-    let agendaTelefono = new Numbers(objTelefonos);
+    let contact = new Contacto(objTelefonos);
 
-    agenda.acomEdad(agendaTelefono);
+    agenda.acomEdad(contact);
 
 });
 document.querySelector("#acomodoAlfa").addEventListener("click",()=>{
-
-    let name = document.querySelector("#name").value;
-    let surName = document.querySelector("#surname").value;
-    let apodo = document.querySelector("#apodo").value;
-    let cumple = document.querySelector("#cumpleAños").value;
-    cumple = cumple.split("-");
-
-    let fechaBirth = new Date(cumple[0], cumple[1] - 1, cumple[2]);
-
-    let telephone = document.querySelector("#telefono").value;
-
-    let objTelefonos = {
-        name: name,
-        surName : surName,
-        apodo : apodo,
-        fechaBirth: fechaBirth,
-        telephone: telephone,
-    };
-
-    let agendaTelefono = new Numbers(objTelefonos);
-
-    agenda.acomAlfa(agendaTelefono);
+    agenda.acomAlfa();
 
 });
 }
