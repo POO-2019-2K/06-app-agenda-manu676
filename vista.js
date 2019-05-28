@@ -97,7 +97,7 @@ export default class Vista{
     //Sacar x Nombre
     ordenarXnombre() {
         this._limpiar();
-        this._agenda.sortNombre().forEach((cnts, index) => {
+        this._agenda.acomodarNombre().forEach((cnts, index) => {
             this._agregarAlaTabla(cnts, index);
         });
         this._ordenamiento = "Nombre";
@@ -106,7 +106,7 @@ export default class Vista{
     //Sacar x Edad
     ordenarXedad() {
         this._limpiar();
-        this._agenda.sortEdad().forEach((cnts, index) => {
+        this._agenda.acomodarEdad().forEach((cnts, index) => {
             this._agregarAlaTabla(cnts, index);
         });
         this._ordenamiento = "Edad";
