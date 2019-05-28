@@ -82,6 +82,21 @@ _eliminarTablas()
         row.cells[6].innerHTML = "";
         row.cells[6].appendChild(btnEliminar);
     }
+    _objetos(contact){
+        let objTelefonos={
+            name : contact.name,
+            surName : contact.surName,
+            apodo : contact.apodo,
+            fechaBirth : contact.fechaBirth,
+            age: contact.getAge(),
+            telephone : contact.telephone
+        };
+        this._contactos.push(objTelefonos);
+    }
+    _contadorContactos(){
+        this._tablaInfo.rows[0].cells[1].innerHTML = this._numContactos;
+        this._tablaInfo.rows[1].cells[1].innerHTML = this._edadProm / this._numContactos;
+    }
     _agregarAlaTabla(contact){
         let row = this._tablaAgenda.insertRow(-1);
         //tabla grande
@@ -101,23 +116,12 @@ _eliminarTablas()
         cellEdad.innerHTML = contact.getAge();
         
         this._agregarBotonEliminar(row,contact);
+            //tabla pequeña
+            this._numContactos++;
+            this._edadProm += contact.getAge(); // this._edadProm = this._edadProm + employee.getAge()
+        this._contadorContactos();
 
-        //tabla pequeña
-        this._numContactos++;
-        this._edadProm += contact.getAge(); // this._edadProm = this._edadProm + employee.getAge()
-
-        this._tablaInfo.rows[0].cells[1].innerHTML = this._numContactos;
-        this._tablaInfo.rows[1].cells[1].innerHTML = this._edadProm / this._numContactos;
-
-        let objTelefonos={
-            name : contact.name,
-            surName : contact.surName,
-            apodo : contact.apodo,
-            fechaBirth : contact.fechaBirth,
-            age: contact.getAge(),
-            telephone : contact.telephone
-        };
-        this._contactos.push(objTelefonos);
+        this._objetos(contact);
     }    
     _encontrarTelefono(apodo){
         let encontrar = -1
