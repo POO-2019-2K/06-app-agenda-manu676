@@ -21,8 +21,11 @@
         <p>Registro de contactos telefonicos</p>
     </div>
     <div class="btn-group" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-warning" id="acomodoAlfa">Acomodo x Alfabetico</button>
-        <button type="button" class="btn btn-warning" id="acomodoEdad">Acomodo x Edad</button>
+        <select id="acomodo">
+            <option value="Basico">Ordenamiento Basico</option>
+            <option value="acomAlfa">Ordenamiento Alfabeticamente</option>
+            <option value="acomEdad">Ordenamiento Edad</option>
+        </select>
     </div>
     </div>
 </div>
@@ -114,15 +117,15 @@
     </div>
             <!-- Tabla -->
     <div class="col-md-10">
-        <table id="agenda" class="table table-borderless table-dark">
+        <table id="agenda" class="table table-border table-primary">
         <thead>
             <tr>
-            <th class="border border-success">Nombre</th>
-            <th class="border border-success">Apellidos</th>
-            <th class="border border-success">Apodo</th>
-            <th class="border border-success">F. de Nacimiento</th>
-            <th class="border border-success">Telefono</th>
-            <th class="border border-success">Edad</th>
+            <th class="border border-dark">Nombre</th>
+            <th class="border border-dark">Apellidos</th>
+            <th class="border border-dark">Apodo</th>
+            <th class="border border-dark">F. de Nacimiento</th>
+            <th class="border border-dark">Telefono</th>
+            <th class="border border-dark">Edad</th>
             <th></th>
             </tr>
         </thead>

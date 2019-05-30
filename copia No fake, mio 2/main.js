@@ -37,60 +37,19 @@ document.querySelector("#btnAdd").addEventListener("click", () => {
 
     form.classList.add("was-validated"); 
 });
-document.querySelector("#acomodoEdad").addEventListener("click",()=>{
-    objTelefonos.acomEdad();
-
-
-    let name = document.querySelector("#name").value;
-    let surName = document.querySelector("#surname").value;
-    let apodo = document.querySelector("#apodo").value;
-    let cumple = document.querySelector("#cumpleAños").value;
-    cumple = cumple.split("-");
-
-    let fechaBirth = new Date(cumple[0], cumple[1] - 1, cumple[2]);
-
-    let telephone = document.querySelector("#telefono").value;
-
-    let objTelefonos = {
-        name: name,
-        surName : surName,
-        apodo : apodo,
-        fechaBirth: fechaBirth,
-        telephone: telephone,
-    };
-
-    let contact = new Contacto(objTelefonos);
-
-    agenda.acomEdad(contact);
-
-});
-document.querySelector("#acomodoAlfa").addEventListener("click",()=>{
-    agenda.acomAlfa(contact);
-
-
-    let name = document.querySelector("#name").value;
-    let surName = document.querySelector("#surname").value;
-    let apodo = document.querySelector("#apodo").value;
-    let cumple = document.querySelector("#cumpleAños").value;
-    cumple = cumple.split("-");
-
-    let fechaBirth = new Date(cumple[0], cumple[1] - 1, cumple[2]);
-
-    let telephone = document.querySelector("#telefono").value;
-
-    let objTelefonos = {
-        name: name,
-        surName : surName,
-        apodo : apodo,
-        fechaBirth: fechaBirth,
-        telephone: telephone,
-    };
-
-    let contact = new Contacto(objTelefonos);
-
-    agenda.acomEdad(contact);
-
-});
+    let seleccion = document.getElementById("acomodo");
+    seleccion.addEventListener("change",()=>{
+        var selecciones = seleccion.value;
+        if (selecciones === "Basico"){
+            swal.fire({
+                type: "error",
+                title: "error",
+                text : "Selecciona una opción"
+                });
+        }else{
+            agenda._encontrarAcomodo(selecciones);
+        }
+    })
 }
 }
 let mainContactos = new Main();

@@ -8,8 +8,6 @@ export default class RegistroTele{
         this._numContactos = 0;
         this._edadProm = 0;
 
-        this._contador = 0;
-
         //ARRAY de contactos 
         this._contactos = [];
         //localStorage.removeItem("Contactos");
@@ -25,38 +23,50 @@ export default class RegistroTele{
 
             this._agregarAlaTabla(new Contacto(cnts));
         })
+
+    }
+    _encontrarAcomodo(selecciones){
+        if ( selecciones === "acomAlfa"){
+            this.acomAlfa();
+        }
+        else if ( selecciones === "acomEdad" ){
+            this.acomEdad();
+        } 
     }
     acomEdad(){
         let contacto = [];
-        contacto = this._contactos.slice(-this._contador);
-        console.log(contacto);
-        contacto.sort(function (a,b){
-            a.age - b.age;
+        contacto = this._contactos.slice(-this._numContactos);
+        contacto = contacto.sort(function (a, b) {
+            return a.age - b.age;
         })
 
-        localStorage.setItem("Contactos",JSON.stringify(this._contactos));
-        
+        localStorage.setItem("Contactos",JSON.stringify(contacto));
+        this._eliminarTablas();
+        this._iniciarTabla();
     }
 
     acomAlfa() {
         let contacto = [];
-        contacto = this._contactos.slice(-this._contador);
-        contacto = this._contactos.sort(function (a, b) {
+        contacto = this._contactos.slice(-this._numContactos);
+        contacto =contacto.sort(function (a, b) {
         if (a.name > b.name) {
             return 1;
         } else {
             return -1;
         }
     });
-
     //Save in local Storange
-    localStorage.setItem('Contactos', JSON.stringify(this._contactos));
+    localStorage.setItem('Contactos', JSON.stringify(contacto));
+    this._eliminarTablas();
+    this._iniciarTabla();
 }
-_eliminarTablas()
-{ var i;
-    for(i =this._contador+1; i-1; i-- ){
-        return contador 
+_eliminarTablas(){ 
+    let i;
+    for(i=this._numContactos; i>0; i--){
+        console.log(this._numContactos);
+        this._tablaAgenda.deleteRow(i);
     }
+    this._numContactos = 0;
 }
 
     _eliminar(row,contact){
